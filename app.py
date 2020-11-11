@@ -1,11 +1,17 @@
 import os
 import numpy
 import json
+
+from flask_cors import CORS, cross_origin
+
 from leont import Leont
 from flask import Flask, request, flash, jsonify
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 UPLOAD_FOLDER = os.path.dirname(__file__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = {'txt'}
@@ -17,6 +23,7 @@ def allowed_file(filename):
 
 
 @app.route('/calculate_file',methods=['GET','POST'])
+@cross_origin()
 def manage_file():
 
     file = request.files['file']
@@ -73,6 +80,7 @@ def manage_file():
 
 
 @app.route('/calculate', methods=['GET','POST'])
+@cross_origin()
 def manage_matrix():
     data = json.loads(request.data)
     n = int(data[1])
