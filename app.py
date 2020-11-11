@@ -68,6 +68,7 @@ def manage_file():
         for i in ans:
             X_.append(i)
 
+        print(X_)
     return json.dumps(X_)
 
 
@@ -112,6 +113,8 @@ def manage_matrix():
     X_ = []
     for i in ans:
         X_.append(i)
+
+    print(X_)
 
     return json.dumps(X_)
 
